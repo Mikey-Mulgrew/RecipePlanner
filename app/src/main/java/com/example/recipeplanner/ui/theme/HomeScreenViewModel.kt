@@ -8,10 +8,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-data class RecipeUI(val title: String)
 
 sealed class RecipeUiState {
-    class Loaded(val recipes: List<RecipeUI>) : RecipeUiState()
+    class Loaded(val recipes: List<Recipe>) : RecipeUiState()
 
     object Empty : RecipeUiState()
 }
@@ -21,9 +20,8 @@ class HomeScreenViewModel(private val repository: RecipeRepository) : ViewModel(
     private val _uiState = MutableStateFlow<RecipeUiState>(RecipeUiState.Empty)
     val uiState: StateFlow<RecipeUiState> = _uiState
 
-    fun addRecipe(title: String) {
+    fun addRecipe(recipe: Recipe) {
         viewModelScope.launch {
-            val recipe = Recipe(title)
             repository.addRecipe(recipe)
         }
     }
@@ -35,7 +33,7 @@ class HomeScreenViewModel(private val repository: RecipeRepository) : ViewModel(
             if (recipes.isEmpty())
                 _uiState.value = RecipeUiState.Empty
             else
-                _uiState.value = RecipeUiState.Loaded(recipes.map { RecipeUI(it.title) })
+                _uiState.value = RecipeUiState.Loaded(recipes)
         }
     }
 }
