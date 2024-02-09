@@ -1,25 +1,20 @@
-package com.example.recipeplanner.ui.theme
+package com.example.recipeplanner.ui.theme.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipeplanner.data.Recipe
 import com.example.recipeplanner.data.RecipeRepository
+import com.example.recipeplanner.ui.theme.createRecipe.CreateRecipeUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-data class RecipeUI(val title: String)
 
-sealed class RecipeUiState {
-    class Loaded(val recipes: List<RecipeUI>) : RecipeUiState()
-
-    object Empty : RecipeUiState()
-}
 
 class HomeScreenViewModel(private val repository: RecipeRepository) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<RecipeUiState>(RecipeUiState.Empty)
-    val uiState: StateFlow<RecipeUiState> = _uiState
+    private val _uiState = MutableStateFlow<HomeState>(HomeState.Empty)
+    val uiState: StateFlow<HomeState> = _uiState
 
     fun addRecipe(title: String) {
         viewModelScope.launch {
@@ -33,9 +28,9 @@ class HomeScreenViewModel(private val repository: RecipeRepository) : ViewModel(
             val recipes = repository.recipes()
 
             if (recipes.isEmpty())
-                _uiState.value = RecipeUiState.Empty
+                _uiState.value = HomeState.Empty
             else
-                _uiState.value = RecipeUiState.Loaded(recipes.map { RecipeUI(it.title) })
+                _uiState.value = HomeState.Loaded(recipes.map { Recipe(it.title) })
         }
     }
 }
