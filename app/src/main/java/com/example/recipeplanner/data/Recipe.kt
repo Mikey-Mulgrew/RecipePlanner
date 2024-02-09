@@ -11,7 +11,7 @@ enum class IngredientUnits(value: String) {
 }
 
 data class Ingredient(
-    val ingredient: String,
+    val name: String,
     val amount: Float,
-    val unit: IngredientUnits
+    val unit: IngredientUnits = IngredientUnits.GRAM
 )

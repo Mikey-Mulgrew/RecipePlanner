@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import com.example.recipeplanner.ui.theme.RecipePlannerTheme
 import com.example.recipeplanner.ui.theme.createRecipe.CreateRecipeActivity
-import com.example.recipeplanner.ui.theme.home.HomeActivity
 
 
 class MainActivity : ComponentActivity() {
@@ -32,16 +31,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    launchBasicNavigation({launchHome()}, {launchCreateRecipe()})
+                    launchBasicNavigation { launchCreateRecipe() }
                 }
             }
         }
     }
 
-    private fun launchHome() {
-        val intent = Intent(this, HomeActivity::class.java)
-        ContextCompat.startActivity(this, intent, null)
-    }
 
     private fun launchCreateRecipe() {
         val intent = Intent(this, CreateRecipeActivity::class.java)
@@ -51,19 +46,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun launchBasicNavigation(
-    launchHome : () -> Unit,
     launchCreateRecipe: () -> Unit,
 ){
     Column {
-        Button(
-            onClick = { launchHome() }
-        ) {
-            Text(
-                text = "Home",
-                fontSize = 36.sp,
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-            )
-        }
         Button(
             onClick = { launchCreateRecipe() }
         ) {

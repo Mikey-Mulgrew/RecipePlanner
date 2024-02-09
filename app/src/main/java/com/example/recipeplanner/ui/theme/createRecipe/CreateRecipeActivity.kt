@@ -3,15 +3,11 @@ package com.example.recipeplanner.ui.theme.createRecipe
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.ViewModel
-import com.example.recipeplanner.ui.theme.RecipePlannerTheme
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.recipeplanner.data.RecipeLocalDataSource
 import com.example.recipeplanner.data.RecipeRepository
 import com.example.recipeplanner.data.persistence.RecipeDatabase
-import com.example.recipeplanner.ui.theme.home.HomeScreenViewModel
+import com.example.recipeplanner.ui.theme.RecipePlannerTheme
 
 
 class CreateRecipeActivity : ComponentActivity() {

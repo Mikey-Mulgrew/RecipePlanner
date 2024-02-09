@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.recipeplanner.data.Ingredient
 import com.example.recipeplanner.data.Recipe
 import com.example.recipeplanner.data.RecipeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +18,7 @@ class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel
 
     private val _uiState = MutableStateFlow(CreateRecipeUIState(
         title = "",
-        nextIngredient = IngredientItem("", 0f),
+        nextIngredient = Ingredient("", 0f),
         ingredients  = emptyList(),
         nextInstruction = "",
         instructions = emptyList(),
@@ -42,14 +43,14 @@ class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel
         _uiState.update { it.copy(title = title) }
     }
 
-    private fun updateIngredient(ingredient: IngredientItem){
+    private fun updateIngredient(ingredient: Ingredient){
 
         _uiState.update { it.copy(nextIngredient = ingredient) }
     }
-    private fun addIngredient(ingredient: IngredientItem){
+    private fun addIngredient(ingredient: Ingredient){
         _uiState.update { it.copy(nextIngredient = ingredient, ingredients = _uiState.value.ingredients.plus(ingredient)) }
     }
-    private fun removeIngredient(ingredient: IngredientItem){
+    private fun removeIngredient(ingredient: Ingredient){
 
     }
     private fun addInstruction(instruction: String){
@@ -61,7 +62,7 @@ class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel
 
     private fun saveRecipe(){
         viewModelScope.launch {
-            repository.addRecipe(Recipe(uiState.value.title))
+            repository.addRecipe(Recipe(uiState.value.title, uiState.value.ingredients))
         }
     }
 
