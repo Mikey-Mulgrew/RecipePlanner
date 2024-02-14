@@ -10,15 +10,15 @@ import androidx.compose.ui.Modifier
 import com.example.recipeplanner.data.RecipeLocalDataSource
 import com.example.recipeplanner.data.RecipeRepository
 import com.example.recipeplanner.data.persistence.RecipeDatabase
-import com.example.recipeplanner.ui.RecipeTest
-import com.example.recipeplanner.ui.TestScreenViewModel
+import com.example.recipeplanner.ui.recipeBook.HomeScreen
+import com.example.recipeplanner.ui.recipeBook.HomeScreenViewModel
 import com.example.recipeplanner.ui.theme.RecipePlannerTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val database = RecipeDatabase.getInstance(applicationContext)
-        val viewModel = TestScreenViewModel(RecipeRepository(RecipeLocalDataSource(database)))
+        val homeViewModel = HomeScreenViewModel(RecipeRepository(RecipeLocalDataSource(database)))
 
         setContent {
             RecipePlannerTheme {
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    RecipeTest(viewModel)
+                    HomeScreen(homeViewModel)
                 }
             }
         }
