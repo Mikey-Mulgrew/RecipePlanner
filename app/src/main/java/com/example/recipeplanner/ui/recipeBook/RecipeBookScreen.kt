@@ -35,7 +35,7 @@ fun getStaticRecipes(): List<Recipe> = listOf(
 
 
 @Composable
-fun HomeScreen(viewModel: HomeScreenViewModel) {
+fun RecipeBookScreen(viewModel: RecipeBookViewModel) {
     LaunchedEffect(Unit) {
         getStaticRecipes().forEach {
             viewModel.addRecipe(it)
