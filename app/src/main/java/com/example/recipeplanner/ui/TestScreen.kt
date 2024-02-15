@@ -25,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import com.example.recipeplanner.data.Ingredient
 import com.example.recipeplanner.data.IngredientUnits
 import com.example.recipeplanner.data.Recipe
-import com.example.recipeplanner.data.persistence.RecipeDatabase
 
 
 @Composable
@@ -83,7 +82,7 @@ fun RecipeForm(addRecipe: (Recipe) -> Unit) {
             value = ingredientName,
             onValueChange = {
                 ingredientName = it
-                ingredientForm.value = ingredientForm.value.copy(ingredient = ingredientName)
+                ingredientForm.value = ingredientForm.value.copy(name = ingredientName)
             },
             placeholder = {Text("Ingredient name")},
             modifier = Modifier.fillMaxWidth()
