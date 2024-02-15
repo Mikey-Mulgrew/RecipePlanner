@@ -1,4 +1,4 @@
-package com.example.recipeplanner.ui.theme.createRecipe
+package com.example.recipeplanner.ui.createRecipe
 
 import com.example.recipeplanner.data.Ingredient
 

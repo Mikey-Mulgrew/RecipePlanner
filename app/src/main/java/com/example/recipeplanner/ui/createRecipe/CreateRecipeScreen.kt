@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.example.recipeplanner.ui.theme.createRecipe
+package com.example.recipeplanner.ui.createRecipe
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
