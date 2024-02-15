@@ -12,6 +12,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -34,8 +41,9 @@ fun getStaticRecipes(): List<Recipe> = listOf(
 )
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecipeBookScreen(viewModel: RecipeBookViewModel) {
+fun RecipeBookScreen(viewModel: RecipeBookViewModel, addRecipeClicked: () -> Unit) {
     LaunchedEffect(Unit) {
         getStaticRecipes().forEach {
             viewModel.addRecipe(it)
@@ -43,7 +51,14 @@ fun RecipeBookScreen(viewModel: RecipeBookViewModel) {
     }
 
     viewModel.getRecipes()
-    Box(modifier = Modifier.padding(2.dp)) { RecipeList(uiState = viewModel.uiState.collectAsState().value) }
+    Scaffold(
+        floatingActionButton = { AddRecipeButton(onClick = addRecipeClicked) },
+        floatingActionButtonPosition = FabPosition.End,
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            RecipeList(uiState = viewModel.uiState.collectAsState().value)
+        }
+    }
 }
 
 @Composable
@@ -89,7 +104,7 @@ fun IngredientPanel(ingredient: Ingredient) {
             .padding(2.dp)
     ) {
         Text(
-            text = ingredient.ingredient, color = ingredientTextColour
+            text = ingredient.name, color = ingredientTextColour
         )
         Text(
             text = ingredient.amount.toString(), color = ingredientTextColour
@@ -97,5 +112,12 @@ fun IngredientPanel(ingredient: Ingredient) {
         Text(
             text = ingredient.unit.name, color = ingredientTextColour
         )
+    }
+}
+
+@Composable
+fun AddRecipeButton(onClick: () -> Unit) {
+    FloatingActionButton(onClick = { onClick() }) {
+        Icon(Icons.Filled.Add, "add recipe button")
     }
 }

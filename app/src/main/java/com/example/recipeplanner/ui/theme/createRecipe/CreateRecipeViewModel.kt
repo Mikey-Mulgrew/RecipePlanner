@@ -1,16 +1,15 @@
 package com.example.recipeplanner.ui.theme.createRecipe
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.recipeplanner.data.Ingredient
 import com.example.recipeplanner.data.Recipe
 import com.example.recipeplanner.data.RecipeRepository
+import com.example.recipeplanner.data.recipeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -65,7 +64,13 @@ class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel
             repository.addRecipe(Recipe(uiState.value.title, uiState.value.ingredients))
         }
     }
+}
 
-
-
+class CreateRecipeViewModelFactory(private val applicationContext: Context) :
+    ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val viewModel = CreateRecipeViewModel(recipeRepository(applicationContext))
+        return viewModel as T
+    }
 }
