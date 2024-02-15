@@ -1,6 +1,5 @@
-package com.example.recipeplanner.ui
+package com.example.recipeplanner.ui.testScreen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.recipeplanner.data.Recipe

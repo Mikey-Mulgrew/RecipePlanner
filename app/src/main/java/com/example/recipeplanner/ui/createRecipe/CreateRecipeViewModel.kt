@@ -1,4 +1,4 @@
-package com.example.recipeplanner.ui.theme.createRecipe
+package com.example.recipeplanner.ui.createRecipe
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -15,14 +15,16 @@ import kotlinx.coroutines.launch
 
 class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel() {
 
-    private val _uiState = MutableStateFlow(CreateRecipeUIState(
+    private val _uiState = MutableStateFlow(
+        CreateRecipeUIState(
         title = "",
         nextIngredient = Ingredient("", 0f),
         ingredients  = emptyList(),
         nextInstruction = "",
         instructions = emptyList(),
         sendAction = ::handleAction
-    ))
+    )
+    )
     val uiState: StateFlow<CreateRecipeUIState> = _uiState
 
 

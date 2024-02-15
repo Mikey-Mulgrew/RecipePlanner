@@ -9,8 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.recipeplanner.ui.recipeBook.RecipeBookScreen
 import com.example.recipeplanner.ui.recipeBook.RecipeBookViewModel
-import com.example.recipeplanner.ui.theme.createRecipe.CreateRecipeScreen
-import com.example.recipeplanner.ui.theme.createRecipe.CreateRecipeViewModel
+import com.example.recipeplanner.ui.createRecipe.CreateRecipeScreen
+import com.example.recipeplanner.ui.createRecipe.CreateRecipeViewModel
 
 enum class Screen {
     RECIPE_BOOK,

@@ -1,4 +1,4 @@
-package com.example.recipeplanner.ui
+package com.example.recipeplanner.ui.testScreen
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
