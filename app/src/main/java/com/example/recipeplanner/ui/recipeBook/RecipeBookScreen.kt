@@ -21,35 +21,17 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.recipeplanner.data.Ingredient
-import com.example.recipeplanner.data.IngredientUnits
 import com.example.recipeplanner.data.Recipe
-
-
-fun ingredients(): List<Ingredient> = listOf(
-    Ingredient("ingredient1", 1f, IngredientUnits.GRAM),
-    Ingredient("ingredient2", 2f, IngredientUnits.MIL)
-)
-
-fun getStaticRecipes(): List<Recipe> = listOf(
-    Recipe("test1", ingredients = ingredients()), Recipe("test2", ingredients = ingredients())
-)
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecipeBookScreen(viewModel: RecipeBookViewModel, addRecipeClicked: () -> Unit) {
-    LaunchedEffect(Unit) {
-        getStaticRecipes().forEach {
-            viewModel.addRecipe(it)
-        }
-    }
-
     viewModel.getRecipes()
     Scaffold(
         floatingActionButton = { AddRecipeButton(onClick = addRecipeClicked) },

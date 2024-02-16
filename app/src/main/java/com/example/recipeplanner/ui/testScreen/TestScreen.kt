@@ -73,7 +73,7 @@ fun RecipeForm(addRecipe: (Recipe) -> Unit) {
         TextField(
             value = recipeName,
             onValueChange = { recipeName = it },
-            placeholder = { Text("Recipe name")},
+            placeholder = { Text("Recipe name") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -84,7 +84,7 @@ fun RecipeForm(addRecipe: (Recipe) -> Unit) {
                 ingredientName = it
                 ingredientForm.value = ingredientForm.value.copy(name = ingredientName)
             },
-            placeholder = {Text("Ingredient name")},
+            placeholder = { Text("Ingredient name") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -95,7 +95,7 @@ fun RecipeForm(addRecipe: (Recipe) -> Unit) {
                 amount = it
                 ingredientForm.value = ingredientForm.value.copy(amount = amount.toFloat())
             },
-            placeholder = {Text("Amount")},
+            placeholder = { Text("Amount") },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -107,7 +107,7 @@ fun RecipeForm(addRecipe: (Recipe) -> Unit) {
                     ingredientForm.value = ingredientForm.value.copy(unit = IngredientUnits.GRAM)
                 })
             DropdownMenuItem(
-                text = { Text(IngredientUnits.MIL.name )},
+                text = { Text(IngredientUnits.MIL.name) },
                 onClick = {
                     ingredientForm.value = ingredientForm.value.copy(unit = IngredientUnits.GRAM)
                 })
@@ -115,7 +115,11 @@ fun RecipeForm(addRecipe: (Recipe) -> Unit) {
 
         Button(
             onClick = {
-                val recipe = Recipe(recipeName, listOf(ingredientForm.value))
+                val recipe = Recipe(
+                    recipeName,
+                    listOf(ingredientForm.value),
+                    listOf("instruction1", "instruction2")
+                )
                 addRecipe(recipe)
             },
             modifier = Modifier

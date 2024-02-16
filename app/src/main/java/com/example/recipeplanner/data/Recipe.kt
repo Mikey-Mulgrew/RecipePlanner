@@ -2,7 +2,8 @@ package com.example.recipeplanner.data
 
 data class Recipe(
     val title: String,
-    val ingredients: List<Ingredient>?
+    val ingredients: List<Ingredient>?,
+    val instructions: List<String>?
 )
 
 enum class IngredientUnits(value: String) {

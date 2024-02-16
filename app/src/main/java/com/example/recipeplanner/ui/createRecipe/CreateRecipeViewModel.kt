@@ -55,7 +55,7 @@ class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel
 
     }
     private fun addInstruction(instruction: String){
-
+        _uiState.update { it.copy(nextInstruction = instruction, instructions = _uiState.value.instructions.plus(instruction)) }
     }
     private fun removeInstruction(instruction: String){
 
@@ -63,7 +63,7 @@ class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel
 
     private fun saveRecipe(){
         viewModelScope.launch {
-            repository.addRecipe(Recipe(uiState.value.title, uiState.value.ingredients))
+            repository.addRecipe(Recipe(uiState.value.title, uiState.value.ingredients, uiState.value.instructions))
         }
     }
 }

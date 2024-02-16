@@ -17,9 +17,17 @@ data class RecipeDataObject(
 
     @ColumnInfo(name = "ingredients")
     @TypeConverters(IngredientsConverter::class)
-    val ingredients: List<IngredientDataObject>? = null
+    val ingredients: List<IngredientDataObject>? = null,
+
+    @ColumnInfo(name = "instructions")
+    @TypeConverters(InstructionsConverter::class)
+    val instructions: List<String>? = null
 ) {
-    constructor(title: String, ingredients: List<IngredientDataObject>?) : this(0, title, ingredients)
+    constructor(
+        title: String,
+        ingredients: List<IngredientDataObject>?,
+        instructions: List<String>?
+    ) : this(0, title, ingredients, instructions)
 }
 
 @Serializable
@@ -30,8 +38,14 @@ data class IngredientDataObject(
     val amount: Float,
     val unit: IngredientUnits
 ) {
-    constructor(ingredient: String, amount: Float, unit: IngredientUnits) : this(0, ingredient, amount, unit)
+    constructor(ingredient: String, amount: Float, unit: IngredientUnits) : this(
+        0,
+        ingredient,
+        amount,
+        unit
+    )
 }
+
 @Dao
 interface RecipeDAO {
 

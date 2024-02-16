@@ -22,6 +22,12 @@ class RecipeBookViewModel(private val repository: RecipeRepository) : ViewModel(
     private val _uiState = MutableStateFlow<HomeScreenUiState>(HomeScreenUiState.Empty)
     val uiState: StateFlow<HomeScreenUiState> = _uiState
 
+    init {
+        StubRecipes.getStaticRecipes().forEach {
+            addRecipe(it)
+        }
+    }
+    
     fun addRecipe(recipe: Recipe) {
         viewModelScope.launch {
             repository.addRecipe(recipe)
