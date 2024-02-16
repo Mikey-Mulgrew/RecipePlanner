@@ -11,7 +11,7 @@ class RecipeLocalDataSource(private val recipeDatabase: RecipeDatabase) {
             val ingredients = it.ingredients?.map { ingredient ->
                 Ingredient(ingredient.ingredient,ingredient.amount,ingredient.unit)
             }
-            Recipe(it.title, ingredients, it.instructions)
+            Recipe(it.rid, it.title, ingredients, it.instructions)
         }
     }
 
@@ -23,5 +23,9 @@ class RecipeLocalDataSource(private val recipeDatabase: RecipeDatabase) {
             val adaptedRecipeDataObject = RecipeDataObject(it.title, ingredientDataObjects, it.instructions)
             recipeDatabase.recipeDao().insertRecipe(adaptedRecipeDataObject)
         }
+    }
+
+    suspend fun deleteById(recipeId: Int) {
+        recipeDatabase.recipeDao().deleteByRecipeId(recipeId)
     }
 }

@@ -10,6 +10,10 @@ class RecipeRepository(private val recipeLocalDataSource: RecipeLocalDataSource)
     suspend fun addRecipe(recipe: Recipe) {
         recipeLocalDataSource.insertOrUpdateRecipe(recipe)
     }
+
+    suspend fun deleteRecipe(recipeId: Int) {
+        recipeLocalDataSource.deleteById(recipeId)
+    }
 }
 
 fun recipeRepository(applicationContext: Context) : RecipeRepository {

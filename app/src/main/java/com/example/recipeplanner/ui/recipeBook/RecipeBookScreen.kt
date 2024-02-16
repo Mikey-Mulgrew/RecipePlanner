@@ -64,6 +64,7 @@ fun RecipePanel(recipe: Recipe) {
             .border(1.dp, Color.Black)
             .padding(2.dp)
     ) {
+        Text(recipe.id.toString())
         Text(recipe.title)
         recipe.ingredients?.let { ingredient ->
             LazyRow(contentPadding = PaddingValues(2.dp)) {

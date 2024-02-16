@@ -9,11 +9,13 @@ object StubRecipes {
         Ingredient("ingredient1", 1f, IngredientUnits.GRAM),
         Ingredient("ingredient2", 2f, IngredientUnits.MIL)
     )
+
     private fun instructions(): List<String> = listOf(
         "instruction1", "instruction2"
     )
+
     fun getStaticRecipes(): List<Recipe> = listOf(
-        Recipe("test1", ingredients = ingredients(), instructions = instructions()),
-        Recipe("test2", ingredients = ingredients(), instructions = instructions())
+        Recipe(id = 0, title = "test1", ingredients = ingredients(), instructions = instructions()),
+        Recipe(id = 0, title = "test2", ingredients = ingredients(), instructions = instructions())
     )
 }

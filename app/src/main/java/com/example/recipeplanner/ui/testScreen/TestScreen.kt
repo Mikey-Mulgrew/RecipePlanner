@@ -116,6 +116,7 @@ fun RecipeForm(addRecipe: (Recipe) -> Unit) {
         Button(
             onClick = {
                 val recipe = Recipe(
+                    0,
                     recipeName,
                     listOf(ingredientForm.value),
                     listOf("instruction1", "instruction2")

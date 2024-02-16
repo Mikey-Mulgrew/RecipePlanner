@@ -63,7 +63,7 @@ class CreateRecipeViewModel(private val repository: RecipeRepository): ViewModel
 
     private fun saveRecipe(){
         viewModelScope.launch {
-            repository.addRecipe(Recipe(uiState.value.title, uiState.value.ingredients, uiState.value.instructions))
+            repository.addRecipe(Recipe(0,uiState.value.title, uiState.value.ingredients, uiState.value.instructions))
         }
     }
 }

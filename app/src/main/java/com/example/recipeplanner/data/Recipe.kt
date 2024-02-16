@@ -1,6 +1,7 @@
 package com.example.recipeplanner.data
 
 data class Recipe(
+    val id: Int,
     val title: String,
     val ingredients: List<Ingredient>?,
     val instructions: List<String>?
